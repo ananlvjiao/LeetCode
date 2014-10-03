@@ -43,4 +43,78 @@ public class Solution {
     	return preCal;
     }
 
+    //Sort a linked list using insertion sort
+    //https://oj.leetcode.com/problems/insertion-sort-list/
+    public ListNode insertionSort(ListNode head)
+    {
+        if(head == null || head.next == null) return head;
+        ListNode cur = head.next;//start from 1
+        ListNode prev = head;
+        while(cur != null)
+        {
+            if(prev.val > cur.val) {
+                //take the node out
+                ListNode xnode = cur;
+                //move cur out
+                prev.next = cur.next;
+
+                ListNode curJ = head;
+                ListNode prevJ = null;
+                while (xnode.val > curJ.val) {
+                    prevJ = curJ;
+                    curJ = curJ.next;
+                }
+                //insert it
+                if(prevJ == null){
+                    head = xnode;
+                }
+                else {
+                    prevJ.next = xnode;
+                }
+                xnode.next = curJ;
+
+                //reset cur
+                cur = prev;
+            }
+            prev = cur;
+            cur = cur.next;
+        }
+        return head;
+
+    }
+
+    public void insertionSort (int[] array)
+    {
+        if(array == null) {
+            return;
+        }
+        for(int i=1; i< array.length; i++)
+        {
+            int j = i;
+            while(j>0 && array[j]<array[j-1])
+            {
+                //swap array[j] array[j-1]
+                j=j-1;
+            }
+        }
+    }
+
+    public void insertionSort2 (int[] array)
+    {
+        if(array == null) {
+            return;
+        }
+        for(int i=1; i< array.length; i++)
+        {
+            int j = i;
+            int x = array[j];
+            while(j>0 && array[j]<array[j-1])
+            {
+                array[j] = array[j-1];
+                j=j-1;
+            }
+            array[j] = x;
+        }
+    }
 }
+
